@@ -6,6 +6,13 @@ const Indexs = (resolve) => {
     resolve(module)
   })
 }
+
+const Ay = (resolve) => {
+  import('components/activity/activity').then((module) => {
+    resolve(module)
+  })
+}
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +24,16 @@ export default new Router({
     {
       path: '/index',
       component: Indexs
+    },
+    {
+      path: '/ay',
+      component: Ay
+    },
+    {
+      path: '/activity'
+    },
+    {
+      path: '/shop'
     }
   ]
 })

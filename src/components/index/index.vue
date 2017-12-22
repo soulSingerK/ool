@@ -1,5 +1,5 @@
 <template>
-  <div class="index-main">
+  <div class="index-main" ref="main">
     <div class="login-content" v-if="activity&&!activity.isCreate">
       <div class="btns">
         <a href="" class="btn-item">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <index-content v-if="activity&&activity.isCreate" @show="showFn" :act-time="activity"></index-content>
-    <p class="copyright" v-if="true">浙江搜道网络技术有限公司版权所有  &nbsp;&nbsp;  浙B2-20090144  &nbsp;  浙ICP备</p>
+    <p class="copyright" v-if="true" ref="copy">浙江搜道网络技术有限公司版权所有  &nbsp;&nbsp;  浙B2-20090144  &nbsp;  浙ICP备</p>
     <div id="cover" v-show="isShow" @click="isShow = !isShow"></div>
     <div class="cover-content" v-show="isShow && url">
       <p class="cover-title">
@@ -35,10 +35,10 @@
 <script>
   import { getActivityInfo } from 'api/index'
   import indexContent from './subpage/index-content'
+  import { mapMutations } from 'vuex'
   export default {
     data() {
       return {
-        show: false,
         selected: 1,
         isShow: false,
         url: '',
@@ -47,6 +47,7 @@
     },
     created () {
       this._getActivityInfo()
+      this.setTabShow(true)
     },
     mounted () {
     },
@@ -55,7 +56,14 @@
         getActivityInfo().then(res => {
           this.activity = res
         })
-      }
+      },
+      showFn() {
+        if (this.activity.qrCodeUrl) {
+        }
+      },
+      ...mapMutations({
+        setTabShow: 'SET_TABSHOW'
+      })
     },
     computed: {
     },
@@ -74,21 +82,17 @@
       position: relative;
       width: 1200px;
       min-height: 800px;
-      background: url("//sc.mysodao.com/app/taobao-admin/src/imgs/login-bg.png") no-repeat;
+      background: url("../../assets/login-bg.png") no-repeat;
       margin: 10px auto 0;
       .btns
         position: absolute;
         top: 380px;
         left: 50%;
         transform: translateX(-50%);
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
         .btn-item
           display: inline-block;
           margin: 0 20px;
-          background: url("//sc.mysodao.com/app/taobao-admin/src/imgs/btn-bg.png") no-repeat 10px 0;
+          background: url("../../assets/btn-bg.png") no-repeat 10px 0;
           .icon-wrap
             display: block;
             width: 80px;
@@ -104,7 +108,7 @@
             color: #333;
             text-align: center;
           &:hover
-            background: url("//sc.mysodao.com/app/taobao-admin/src/imgs/btn-hover.png") no-repeat 10px 0;
+            background: url("../../assets/btn-hover.png") no-repeat 10px 0;
             .icon-wrap
               background: linear-gradient(left bottom,#4589ff, #48b3ff);
             .text

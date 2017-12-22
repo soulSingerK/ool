@@ -1,1 +1,4 @@
-export const MODIFY_TEST = 'MODIFY_TEST'
+
+export const SET_TABSHOW = 'SET_TABSHOW'
+
+export const SET_MAINTYPE = 'SET_MAINTYPE'

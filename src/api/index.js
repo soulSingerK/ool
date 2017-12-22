@@ -15,6 +15,10 @@ export function getJoinDataT (data) {
   return get('/api/home/getjoinorpaymentsevenorthirty')
 }
 
+export function getCouponlist () {
+  return get('/api/product/getcouponlist')
+}
+
 function get(url, data = null) {
   return axios.get(url, {
     params: data

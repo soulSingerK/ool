@@ -1,8 +1,7 @@
-var koa = require('koa');
-var koaRouter = require('koa-router');
-var app = new koa();
-var router = new koaRouter();
-
+var koa = require('koa')
+var koaRouter = require('koa-router')
+var app = new koa()
+var router = new koaRouter()
 
 var time = require('./index/serverTime.js')
 router.get('/api/common/getservicetime', function *(next) {
@@ -20,7 +19,12 @@ router.get('/api/home/getjoinorpaymentsevenorthirty', function *(next) {
   this.body = indexData.joinDataT
 })
 
+var couponlist = require('./activity/awards.js')
+router.get('/api/product/getcouponlist', function *(next) {
+  this.body = couponlist
+})
+
 // 开始服务并生成路由
 app.use(router.routes())
-.use(router.allowedMethods());
-app.listen(4000);
+.use(router.allowedMethods())
+app.listen(4000)

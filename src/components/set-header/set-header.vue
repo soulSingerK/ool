@@ -2,7 +2,7 @@
   <div class="header">
     <div class="wrapper">
       <img src="./../../assets/help-log.png" alt="" />
-      <ul class="hrefs">
+      <ul class="hrefs" v-if="isShow">
         <li class="href">
           <router-link to="/index">首页</router-link>
         </li>
@@ -24,6 +24,12 @@
 <script>
   import {getServerTime} from 'api/index'
   export default {
+    props: {
+      isShow: {
+        type: Boolean,
+        default: true
+      }
+    },
     data () {
       return {
         time: ''
@@ -48,6 +54,7 @@
     height: 70px;
     background-color: #fff;
     box-shadow: 0 2px 5px 5px #e2e2e2;
+    margin-bottom: 10px;
   .wrapper
     width: 1200px;
     margin: 0 auto;

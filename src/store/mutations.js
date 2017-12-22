@@ -1,8 +1,11 @@
 import * as types from './mutations.type'
 
 const mutations = {
-  [types.MODIFY_TEST] (state, test) {
-    state.test = test
+  [types.SET_TABSHOW] (state, tabShow) {
+    state.tabShow = tabShow
+  },
+  [types.SET_MAINTYPE] (state, mainType) {
+    state.mainType = mainType
   }
 }
 
