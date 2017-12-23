@@ -13,6 +13,24 @@ const Ay = (resolve) => {
   })
 }
 
+const Tpl = (resolve) => {
+  import('components/set-tpl/set-tpl').then(module => {
+    resolve(module)
+  })
+}
+
+const detailSet = (resolve) => {
+  import('components/detail-set/detail-set').then(module => {
+    resolve(module)
+  })
+}
+
+const setCover = resolve => {
+  import('components/set-cover/set-cover').then(module => {
+    resolve(module)
+  })
+}
+
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +46,22 @@ export default new Router({
     {
       path: '/ay',
       component: Ay
+    },
+    {
+      path: '/setTpl',
+      component: Tpl
+    },
+    {
+      path: '/detailSet',
+      component: detailSet,
+      children: [{
+        path: 'setcover',
+        component: setCover
+      }, {
+        path: 'setusertype'
+      }, {
+        path: ''
+      }]
     },
     {
       path: '/activity'

@@ -111,6 +111,25 @@
       _backData () {
   
       },
+      saveSet() {  // 保存所有的设置
+        if (this.mainTypeIn) {
+          this.setMainType(this.mainTypeIn)
+        }
+        if (this.questionsIn.length) {
+          this.setQuestions(this.questionsIn)
+        }
+        if (this.awords.list.length && this.awords.list[0].coupon) {
+          this.setAwards(this.awords)
+        }
+        this.$router.push({
+          path: 'setTpl'
+        })
+      },
+      checkAllInput() {   // 填写校验(待做)
+        if (!this.mainTypeIn) {
+
+        }
+      },
       confirm(item) { // 响应子组件layer的事件
         if (this.awords.selectIndex === -1) {
           return
@@ -130,7 +149,7 @@
         }
         this.awords.list.splice(index, 1)
       },
-      addCoupon () {
+      addCoupon () {  // 增加一个奖品项
         let obj = {
           sort: -1,
           percent: ''
@@ -170,7 +189,9 @@
       },
       ...mapMutations({
         setTabShow: 'SET_TABSHOW',
-        setMainType: 'SET_MAINTYPE'
+        setMainType: 'SET_MAINTYPE',
+        setQuestions: 'SET_QUESTIONS',
+        setAwards: 'SET_AWARDS'
       })
     },
     computed: {
@@ -331,4 +352,8 @@
         position: absolute;
         left: -14px;
         top: 3px;
+  .slide-enter-active, .slide-leave-active
+    transition: all 0.3s
+  .slide-enter, .slide-leave-to
+    transform: translate3d(100%, 0, 0)
 </style>
