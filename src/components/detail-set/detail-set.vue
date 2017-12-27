@@ -2,7 +2,9 @@
   <div class="detail-wrapper">
     <router-header v-if="questions && questions.length" :data="questions"></router-header>
     <transition name="slide">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
   </div>
 </template>
@@ -11,15 +13,24 @@
   import routerHeader from 'base/router-header/router-header.vue'
   import {mapGetters, mapMutations} from 'vuex'
   export default {
-    mounted() {
-      setTimeout(() => {
-        this.setCurrent(1)
-        this.$router.push({
-          path: '/detailSet/setCover'
-        })
-      }, 20)
+    data () {
+      return {
+        nextShow: true,
+        lastShow: false
+      }
+    },
+    created () {
+      this.setInit()
     },
     methods: {
+      setInit () {
+        this.setCurrent(1)
+        this.$router.push({
+          path: '/detailSet/setcover'
+        })
+        this.nextShow = true
+        this.lastShow = false
+      },
       ...mapMutations({
         setCurrent: 'SET_CURRENT'
       })
@@ -39,7 +50,12 @@
     margin: 0 auto;
     background-color: #fff;
   .slide-enter-active, .slide-leave-active
-    transition: all 0.3s;
+    transition: opacity 0.3s;
+    .anmi
+      transition: all .3s
   .slide-enter, .slide-leave-to
-    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+    height: 0;
+    .anmi
+      transform: translate3d(100%, 0, 0);
 </style>

@@ -10,7 +10,8 @@ const state = {
   preference: [],   // 风格偏好
   tpl: '',          // 模板
   current: -1,      // 创建活动时的当前页
-  coverImgs: null   // 模板自定义图片
+  coverImgs: null,  // 模板自定义图片
+  actName: ''
 }
 
 export default state

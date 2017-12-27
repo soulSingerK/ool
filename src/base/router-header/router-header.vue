@@ -20,7 +20,7 @@
     },
     data() {
       return {
-        visited: -1
+        visited: 1
       }
     },
     watch: {
@@ -89,18 +89,19 @@
       box-sizing: border-box;
       margin-left: 70px;
       position: relative;
-      &.current
+      &.ready
         &:before
           border-color: #2b97ff;
         .sort
-          background-color: #2b97ff;
+          background-color: #fff;
+          color: #2b97ff;
+          border: 1px solid #2b97ff;
         .name
           color: #2b97ff;
-        &.ready
+        &.current
           .sort
-           background-color: #fff;
-           color: #2b97ff;
-           border: 1px solid #2b97ff;
+            background-color: #2b97ff;
+            color: #fff;
       &:first-child
         margin-left: 0;
         &:before

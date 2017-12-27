@@ -19,3 +19,5 @@ export const tpl = state => state.tpl
 export const current = state => state.current
 
 export const coverImgs = state => state.coverImgs
+
+export const actName = state => state.actName

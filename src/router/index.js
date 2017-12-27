@@ -31,6 +31,18 @@ const setCover = resolve => {
   })
 }
 
+const setUserType = resolve => {
+  import('components/set-userType/set-userType').then(module => {
+    resolve(module)
+  })
+}
+
+const setShopSort = resolve => {
+  import('components/set-shopSort/set-shopSort').then((module) => {
+    resolve(module)
+  })
+}
+
 Vue.use(Router)
 
 export default new Router({
@@ -58,9 +70,17 @@ export default new Router({
         path: 'setcover',
         component: setCover
       }, {
-        path: 'setusertype'
+        path: 'setuserType',
+        component: setUserType
       }, {
-        path: ''
+        path: 'setshopSort',
+        componnet: setShopSort
+      }, {
+        path: 'setscene'
+      }, {
+        path: 'setpreference'
+      }, {
+        path: 'setsuccess'
       }]
     },
     {

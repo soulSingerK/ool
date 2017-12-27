@@ -20,3 +20,5 @@ export const SET_TPL = 'SET_TPL'
 export const SET_CURRENT = 'SET_CURRENT'
 
 export const SET_COVERIMG = 'SET_COVERIMG'
+
+export const SET_ACTNAME = 'SET_ACTNAME'

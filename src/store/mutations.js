@@ -33,6 +33,9 @@ const mutations = {
   },
   [types.SET_COVERIMG] (state, coverImgs) {
     state.coverImgs = coverImgs
+  },
+  [types.SET_ACTNAME] (state, actName) {
+    state.actName = actName
   }
 }
 
