@@ -20,9 +20,8 @@
   import selectSet from 'base/select-set/select-set'
   import uploadImg from 'base/upload-img/upload-img'
   import { setMixin, loadMixin } from 'common/js/set-minxin'
-  import { userData } from './config'
   import { mapGetters } from 'vuex'
-
+  import {userData} from './data'
   export default {
     mixins: [setMixin, loadMixin],
     data() {
@@ -30,19 +29,19 @@
         rend: []
       }
     },
-    created() {
+    created () {
       this._initData()
     },
     methods: {
       _initData () {
         let temp = []
-        if (this.userType.length) {
-          temp = this.userType.slice()
+        if (this.scene.length) {
+          temp = this.scene.slice()
         } else {
           temp = userData.slice()
         }
         this.rend = temp.map((item, index) => {
-          return Object.assign({}, item, {isShow: false, key: index + 1})
+          return Object.assign({}, item, {key: index + 1})
         })
       }
     },
@@ -57,7 +56,7 @@
         obj.background = `/src/assets/tpl-${this.tpl}-background.jpg`
         return obj
       },
-      ...mapGetters(['userType'])
+      ...mapGetters(['scene'])
     },
     components: {
       previewBox,

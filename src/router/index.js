@@ -43,6 +43,18 @@ const setShopSort = resolve => {
   })
 }
 
+const setScene = resolve => {
+  import('components/set-scene/set-scene').then((module) => {
+    resolve(module)
+  })
+}
+
+const setPreference = resolve => {
+  import('components/set-preference/set-preference').then((module) => {
+    resolve(module)
+  })
+}
+
 Vue.use(Router)
 
 export default new Router({
@@ -74,11 +86,13 @@ export default new Router({
         component: setUserType
       }, {
         path: 'setshopSort',
-        componnet: setShopSort
+        component: setShopSort
       }, {
-        path: 'setscene'
+        path: 'setscene',
+        component: setScene
       }, {
-        path: 'setpreference'
+        path: 'setpreference',
+        component: setPreference
       }, {
         path: 'setsuccess'
       }]

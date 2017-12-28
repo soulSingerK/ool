@@ -43,6 +43,20 @@ export const loadMixin = {
           item.isShow = true
         }
       })
+    },
+    setNext () {
+      const path = this.$route.path.split('/set')[1]
+      const index = this.questions.indexOf(path)
+      this.setCurrent(index + 3)
+      if (index !== this.questions.length - 1) {
+        this.$router.push({
+          path: `/detailSet/set${this.questions[index + 1]}`
+        })
+      } else {
+        this.$router.push({
+          path: `/detailSet/setsuccess`
+        })
+      }
     }
   }
 }

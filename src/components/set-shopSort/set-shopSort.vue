@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-    <set-footer :next-show="true" :last-show="true" @last="last" @next="next"></set-footer>
+    <set-footer :next-show="true" :last-show="true" @last="last" @next="setNext"></set-footer>
   </div>
 </template>
 
@@ -21,6 +21,7 @@
   import uploadImg from 'base/upload-img/upload-img'
   import { setMixin, loadMixin } from 'common/js/set-minxin'
   import { mapGetters } from 'vuex'
+  import {userData} from './data'
   export default {
     mixins: [setMixin, loadMixin],
     data() {
@@ -29,9 +30,32 @@
       }
     },
     created () {
-      console.log(1111)
+      this._initData()
+    },
+    methods: {
+      _initData () {
+        let temp = []
+        if (this.shopSort.length) {
+          temp = this.shopSort.slice()
+        } else {
+          temp = userData.slice()
+        }
+        this.rend = temp.map((item, index) => {
+          return Object.assign({}, item, {key: index + 1})
+        })
+      }
     },
     computed: {
+      images () {
+        if (!this.tpl) {
+          return
+        }
+        let obj = {}
+        obj.title = `/src/assets/tpl-${this.tpl}-uttitle.png`
+        obj.btn = `/src/assets/tpl-${this.tpl}-nextstep.png`
+        obj.background = `/src/assets/tpl-${this.tpl}-background.jpg`
+        return obj
+      },
       ...mapGetters(['shopSort'])
     },
     components: {
@@ -43,5 +67,13 @@
 </script>
 
 <style lang="sass" scoped>
-
+  .left
+    float: left;
+  .loads
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .item
+      margin-bottom: 20px;
 </style>
